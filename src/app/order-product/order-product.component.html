@@ -1,0 +1,61 @@
+
+<html>
+  <head><title>Product List</title>
+  <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 300px;
+        padding: 20px;
+        box-shadow:0px 10px 15px 10px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        text-align: center;
+        background-color: beige;
+    }
+    body{
+      text-align: center;
+
+      
+      }
+
+  </style>
+  </head>
+  <body>
+  <table>
+  <tr>
+    <th>Product Name</th> 
+    <th>Available Quantity</th>
+  </tr>
+  <tr>
+      <td>{{listOfProducts[id].productName}}</td>
+      <td>{{listOfProducts[id].availableQuantity}}</td>    
+  </tr> 
+</table>
+<br>
+<br>
+<br>
+<br>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate >
+    <table>
+        <tr>
+            <th>Product name:</th>
+            <th>{{listOfProducts[id].productName}}</th>
+        </tr>
+        <tr>
+            <td>Quantity:</td>
+            <td><input type="number" name="orderedQuantity"required></td>
+        </tr>
+    </table>
+   <input type="submit" value="Order">
+</form>
+
+  </body>
+</html>
+

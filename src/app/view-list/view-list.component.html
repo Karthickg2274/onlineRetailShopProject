@@ -1,0 +1,51 @@
+<html>
+  <head><title>Product List</title>
+  <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        padding: 20px;
+        box-shadow:0px 10px 15px 10px;
+        align-self:center;
+        margin: 0 auto;
+
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        background-color: beige;
+
+    }
+    body{
+      text-align: center;
+      margin: 0 auto;
+      }
+
+  </style>
+  </head>
+  <body>
+  
+  <table>
+  <tr>
+    <th>Product Name</th>
+    <th>Product ID</th> 
+    <th>Available Quantity</th>
+
+  </tr>
+  <tr *ngFor="let each of listOfProducts;let i = index">
+    <ng-template [ngIf]="each.productName!=null && each.productName!=''&&each.availableQuantity>=1">
+      <td>{{each.productName}}</td>
+      <td>{{each.productId}}</td>
+      <td>{{each.availableQuantity}}</td>
+      <td><a [routerLink]="['/order-products',i]">Order</a></td>
+    </ng-template>
+    
+  </tr>
+  
+</table>
+
+  </body>
+</html>
