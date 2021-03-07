@@ -1,8 +1,8 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { OrderProductComponent } from './order-product/order-product.component';
-import { ViewList, ViewListComponent } from './view-list/view-list.component';
+import { ViewListComponent } from './view-list/view-list.component';
 
 const routes: Routes = [
   {path:'view-list',component:ViewListComponent},

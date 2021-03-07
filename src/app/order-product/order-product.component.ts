@@ -1,54 +1,67 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap } from 'rxjs/operators'
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { ProductsService } from '../products.service';
-import { ViewList } from '../view-list/view-list.component';
-import { HttpClient } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import swal from 'sweetalert2';
+import { OrdersService } from '../Services/orders.service';
+
+
 
 @Component({
   selector: 'app-order-product',
   templateUrl: './order-product.component.html',
   styleUrls: ['./order-product.component.css']
 })
+
 export class OrderProductComponent implements OnInit {
-  id=0;
-  listOfProducts: ViewList[]= [];
+  id:any;
+  product;
+  orderedQuantity=1;
+  ProductID:any;
 
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private service: ProductsService,
-    private http:HttpClient
-    
+    private service: OrdersService,
   ) { }
 
   ngOnInit(): void {
     this.id=this.route.snapshot.params.index;
-    this.service.getList().subscribe(result => {console.log(result);
-      this.listOfProducts=result
+    this.service.getList().subscribe(result => {
+      
+      result.forEach(product=>{
+        if(product.productId==this.id){
+          this.product = product;
+        }
+      })
     })
   
 
 
   }
-  onSubmit(f:NgForm){
+  onSubmit(){
+    
     const orderList={
-      productId: this.listOfProducts[this.id].productId,
-      ...f.value
+      productId: this.id,
+      quantity:this.orderedQuantity
     }
+    if(this.orderedQuantity<=this.product.availableQuantity&&this.orderedQuantity>0 ){
     this.service.orderProduct(orderList)
       .subscribe(
-        (result)=>{
-          alert("Order Placed");
-          f.reset()
-        },
-        (error)=>{
-          alert(error.message)
+        ()=>{
+          swal.fire(" ","Order Placed",'success');
         }
       )
-
+    }
+    else{
+      swal.fire(" ","Enter valid Input",'error');
+    }
   }
+  checkOrderedQuantity(updatedValue){
+    this.orderedQuantity=updatedValue;
+    if(updatedValue > this.product.availableQuantity ){
+      swal.fire(" ","Enter valid Input",'error');
+    }
+  }
+
+
 
 }

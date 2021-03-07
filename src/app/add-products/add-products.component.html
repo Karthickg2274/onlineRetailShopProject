@@ -1,14 +1,18 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate  >
-    <table>
-        <tr>
-            <td>Product name:</td>
-            <td><input type="text" id="productName" name="productName" ngModel></td>
-        </tr>
-        <tr>
-            <td>Quantity:</td>
-            <td><input type="number" id="availableQuantity" name="availableQuantity" ngModel>
-            </td>
-        </tr>
-    </table>
-    <input type="submit" value="Submit">
-</form>
+<html>
+    <body>
+        <table>
+            <tr>
+                <td>Product name:</td>
+                    <td><input type="text" [ngModel]="productName" (ngModelChange)="checkProductName($event)"></td>
+                </tr>
+            <tr>
+                <td>Quantity:</td>
+                <td><div><input type="number" [ngModel]="productQuantity" (ngModelChange)="checkAddQuantity($event)"></div></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <input type="submit" value="Submit" (click)="onSubmit()">
+
+    </body>
+</html>

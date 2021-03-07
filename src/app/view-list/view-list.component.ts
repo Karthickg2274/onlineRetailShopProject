@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import  { HttpClient } from '@angular/common/http';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../Services/products.service';
 
 export class ViewList{
   constructor(
@@ -19,13 +18,13 @@ export class ViewList{
 })
 export class ViewListComponent implements OnInit {
   listOfProducts: ViewList[]= [];
-  constructor(private http:HttpClient,private product: ProductsService) {
+  constructor(private product: ProductsService) {
     
    }
 
   ngOnInit(): void {
     
-    this.product.getList().subscribe(result => {console.log(result);
+    this.product.getList().subscribe(result => {
       this.listOfProducts=result
     })
 
