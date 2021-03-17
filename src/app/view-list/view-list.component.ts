@@ -5,7 +5,7 @@ export class ViewList{
   constructor(
     public productName:String,
     public productId:String,
-    public availableQuantity:number
+    public productQuantity:number
   ){
 
   }
@@ -26,6 +26,7 @@ export class ViewListComponent implements OnInit {
     
     this.product.getList().subscribe(result => {
       this.listOfProducts=result
+      console.log(this.listOfProducts)
     })
 
   }

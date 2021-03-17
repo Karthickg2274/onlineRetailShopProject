@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment.prod';
 import { ViewList } from '../view-list/view-list.component';
 
 const url = environment.apiURL+"/Product";
-const orderUrl = environment.apiURL+"/OrderProducts";
+const orderUrl = environment.apiURL+"/Order";
 
 @Injectable({
   providedIn: 'root'

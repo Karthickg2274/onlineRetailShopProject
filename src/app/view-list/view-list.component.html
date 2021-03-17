@@ -11,9 +11,9 @@
 
   </tr>
   <tr *ngFor="let product of listOfProducts;">
-    <ng-template [ngIf]="product.productName!==null && product.productName !=='' &&product.availableQuantity>=1">
+    <ng-template [ngIf]="product.productName!==null && product.productName !=='' &&product.productQuantity>=1">
       <td>{{product.productName}}</td>
-      <td>{{product.availableQuantity}}</td>
+      <td>{{product.productQuantity}}</td>
       <td><a [routerLink]="['/order-products',product.productId]">Order</a></td>
     </ng-template>
     

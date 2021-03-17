@@ -22,6 +22,7 @@ export class ProductsService {
 
 
   getList(): Observable<ViewList[]> {
+    console.log(url)
     return this.http.get<ViewList[]>(url)
   }
 

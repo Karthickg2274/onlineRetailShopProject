@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL:"https://uiexercise.onemindindia.com/api/"
+  apiURL:"https://onemindindia-onlineretailshop.azurewebsites.net"
 };

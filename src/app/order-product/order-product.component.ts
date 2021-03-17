@@ -3,8 +3,6 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import swal from 'sweetalert2';
 import { OrdersService } from '../Services/orders.service';
 
-
-
 @Component({
   selector: 'app-order-product',
   templateUrl: './order-product.component.html',
@@ -43,7 +41,7 @@ export class OrderProductComponent implements OnInit {
       productId: this.id,
       quantity:this.orderedQuantity
     }
-    if(this.orderedQuantity<=this.product.availableQuantity&&this.orderedQuantity>0 ){
+    if(this.orderedQuantity<=this.product.productQuantity&&this.orderedQuantity>0 ){
     this.service.orderProduct(orderList)
       .subscribe(
         ()=>{
@@ -52,13 +50,13 @@ export class OrderProductComponent implements OnInit {
       )
     }
     else{
-      swal.fire(" ","Enter valid Input",'error');
+      swal.fire(" ","Enter Quantity Within Available Quantity",'error');
     }
   }
   checkOrderedQuantity(updatedValue){
     this.orderedQuantity=updatedValue;
-    if(updatedValue > this.product.availableQuantity ){
-      swal.fire(" ","Enter valid Input",'error');
+    if(updatedValue > this.product.productQuantity || updatedValue <= 0 ){
+      swal.fire(" ","Enter Quantity Within Available Quantity",'error');
     }
   }
 

@@ -16,7 +16,7 @@ export class AddProductsComponent implements OnInit {
   onSubmit(){
     const addList={
       productName : this.productName,
-      availableQuantity:this.productQuantity
+      productQuantity:this.productQuantity
     }
     if(this.productName >='a'  && this.productName <= 'z'  && this.productName.length<20 && this.productQuantity >=0  && this.productQuantity <= 10000 || this.productName >='A'  && this.productName <= 'Z'  && this.productQuantity >=0  && this.productQuantity <= 10000 && this.productName.length<20){
       this.productsService.addProduct(addList)
@@ -30,7 +30,7 @@ export class AddProductsComponent implements OnInit {
       )
      }
      else{
-      swal.fire(" ","Enter valid Input",'error');
+      swal.fire(" ","Enter Valid Product Name Or Quantity",'error');
     }
     
 
@@ -43,21 +43,17 @@ export class AddProductsComponent implements OnInit {
   
   checkProductName(updatedValue){
     this.productName=updatedValue;
-    if(updatedValue >='a'  && updatedValue <= 'z' && updatedValue.length<20 || updatedValue >='A'  && updatedValue <= 'Z' && updatedValue.length<20){
-      
-    }
-    else{
-      swal.fire(" ","Enter valid Input",'error');
+    if(updatedValue.length>20){
+      swal.fire(" ","Enter Valid Product Name",'error');
+      this.productName="";
     }
     
   }
   checkAddQuantity(updatedValue){
     this.productQuantity=updatedValue;
-    if(updatedValue >=0  && updatedValue <= 10000  ){
-      
-    }
-    else{
-      swal.fire(" ","Enter valid Input",'error');
+    if(updatedValue <=0  || updatedValue >= 10000  ){
+      swal.fire(" ","Enter Valid Product Quantity Within 10000",'error');
+      this.productQuantity=1;
     }
   }
 
