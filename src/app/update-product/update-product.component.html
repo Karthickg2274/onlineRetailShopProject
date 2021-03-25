@@ -2,12 +2,8 @@
     <body>
         <table>
             <tr>
-                <td>Product name:</td>
-                    <td><input type="text" [ngModel]="productName" (ngModelChange)="checkProductName($event)" pattern="[A-Za-z][A-Za-z_$0-9 ]{4,20}" #uname="ngModel">
-                    <div *ngIf="uname.errors?.pattern"> 
-                        User name not valid.
-                     </div> 
-                     </td>
+                <td>Product name: </td>
+                    <td><input type="text" [ngModel]="productName" (ngModelChange)="checkProductName($event)" placeholder={{product.productName}}></td>
                 </tr>
             <tr>
                 <td>Quantity:</td>

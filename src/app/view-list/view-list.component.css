@@ -9,14 +9,35 @@ table {
 
 }
 
-td, th {
+td {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
-    background-color: beige;
 
 }
+th{
+    padding: 1rem;
+    padding-left: 4rem;
+  }
+  
 body{
   text-align: center;
   margin: 0 auto;
   }
+  a{
+      color: black;
+  }
+  /* td {
+    border-bottom-width: 0px;
+    text-align: center;
+    padding-top:1rem;
+  }
+  
+  th{
+    padding: 1rem;
+    padding-left: 4rem;
+  }
+  
+  th{
+    padding-left: 0rem;
+  } */

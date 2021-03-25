@@ -1,25 +1,21 @@
 <html>
   <head><title>Product List</title>
-
   </head>
   <body>
   
-  <table>
+  <table mat-table matSort>
   <tr>
-    <th>Product Name</th>
-    <th>Available Quantity</th>
-
+    <th mat-header-cell>Product Name</th>
+    <th mat-header-cell>Available Quantity</th>
   </tr>
   <tr *ngFor="let product of listOfProducts;">
-    <ng-template [ngIf]="product.productName!==null && product.productName !=='' &&product.productQuantity>=1">
-      <td>{{product.productName}}</td>
-      <td>{{product.productQuantity}}</td>
-      <td><a [routerLink]="['/order-products',product.productId]">Order</a></td>
-    </ng-template>
-    
+      <td mat-cell>{{product.productName}}</td>
+      <td mat-cell>{{product.productQuantity}}</td>
+      <td mat-cell><input type="submit" value="Order" [routerLink]="['/order-products',product.productId]"></td>
+      <td mat-cell><input type="submit" value="Update" [routerLink]="['/update-product',product.productId]"></td>
+      <td mat-cell>
+      <input type="submit" value="Delete" (click)="onDelete(product.productId)"></td>  
   </tr>
-  
 </table>
-
-  </body>
+</body>
 </html>

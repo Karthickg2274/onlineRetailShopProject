@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import  { HttpClientModule } from '@angular/common/http';
 import { OrderProductComponent } from './order-product/order-product.component';
+import { UpdateProductComponent } from './update-product/update-product.component';
+// import { MatTableModule } from '@angular/material/table';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    OrderProductComponent
+    // MatTableModule,
+    OrderProductComponent,
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,

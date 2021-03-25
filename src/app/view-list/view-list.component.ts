@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../Services/products.service';
+import swal from 'sweetalert2';
 
-export class ViewList{
+
+export class ViewList {
   constructor(
-    public productName:String,
-    public productId:String,
-    public productQuantity:number
-  ){
+    public productName: String,
+    public productId: String,
+    public productQuantity: number
+  ) {
 
   }
 }
@@ -17,19 +19,42 @@ export class ViewList{
   styleUrls: ['./view-list.component.css']
 })
 export class ViewListComponent implements OnInit {
-  listOfProducts: ViewList[]= [];
-  constructor(private product: ProductsService) {
-    
-   }
+  listOfProducts: ViewList[] = [];
+  displayedColumns: string[] = ['Name', 'Available Quantity'];
 
-  ngOnInit(): void {
-    
-    this.product.getList().subscribe(result => {
-      this.listOfProducts=result
-      console.log(this.listOfProducts)
-    })
+
+  constructor(private product: ProductsService) {
 
   }
-  
 
+  ngOnInit(): void {
+
+    this.product.getList().subscribe(result => {
+      this.listOfProducts = result;
+      console.log(this.listOfProducts)
+
+    })
+  }
+
+  onDelete(productId) {
+    this.product.deleteProduct(productId)
+      .subscribe(
+        () => {
+          swal.fire(" ", "Product Deleted", 'success');
+
+        }
+      )
+    setTimeout(() => {
+      this.product.getList().subscribe(result => {
+        this.listOfProducts = result
+      })
+    }, 3000);
+  }
 }
+
+
+
+
+
+
+

@@ -8,8 +8,9 @@ import swal from 'sweetalert2';
   styleUrls: ['./add-products.component.css']
 })
 export class AddProductsComponent implements OnInit {
-  productName:any;
+  productName:String="";
   productQuantity:any;
+  
 
   constructor( private productsService:ProductsService) { }
 
@@ -18,7 +19,7 @@ export class AddProductsComponent implements OnInit {
       productName : this.productName,
       productQuantity:this.productQuantity
     }
-    if(this.productName >='a'  && this.productName <= 'z'  && this.productName.length<20 && this.productQuantity >=0  && this.productQuantity <= 10000 || this.productName >='A'  && this.productName <= 'Z'  && this.productQuantity >=0  && this.productQuantity <= 10000 && this.productName.length<20){
+    if( this.productName.length<20 && this.productQuantity >=0  && this.productQuantity <= 10000 ){
       this.productsService.addProduct(addList)
       .subscribe(
         ()=>{
